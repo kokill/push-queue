@@ -12,11 +12,11 @@ function Queue(action) {
         }
     }
 
-    function next() {
+    function next(...params) {
         var tuple = buffer.shift()
         var callback = tuple[1]
 
-        callback && callback()
+        callback && callback(...params)
 
         if (buffer.length > 0) {
             action(buffer[0][0], next)
